@@ -24,12 +24,12 @@ mongoose.connection.error('error', function(err){
 
 //Initialize App
 const app = express();
-const PORT = "3000";
+const PORT = "4000";
 
+const seller = require("./route/sellerRoute");
 // const users = require("./routes/userRoute");
 // const category = require("./routes/categoryRoute");
 // const subCategory = require("./routes/subCategoryRoute");
-// const seller = require("./routes/sellerRoute");
 // const product = require("./routes/productRoute");
 
 
@@ -44,7 +44,7 @@ app.use(passport.session());
 // app.use('/user', users);
 // app.use('/category', category);
 // app.use('/subCategory', subCategory);
-// app.use('/seller', seller);
+app.use('/seller', seller);
 // app.use('/product', product);
 
 
