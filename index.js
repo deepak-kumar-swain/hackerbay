@@ -26,11 +26,7 @@ mongoose.connection.error('error', function(err){
 const app = express();
 const PORT = "4000";
 
-const seller = require("./route/sellerRoute");
-// const users = require("./routes/userRoute");
-// const category = require("./routes/categoryRoute");
-// const subCategory = require("./routes/subCategoryRoute");
-// const product = require("./routes/productRoute");
+const user = require("./route/userRoute");
 
 
 //Middlewares
@@ -38,18 +34,13 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
+require('./config/passport')(passport);
 
-// require('./config/passport')(passport);
-
-// app.use('/user', users);
-// app.use('/category', category);
-// app.use('/subCategory', subCategory);
-app.use('/seller', seller);
-// app.use('/product', product);
+app.use('/user', user);
 
 
 //Static Folder to Use
-app.use(express.static(__dirname + "/seller"));
+app.use(express.static(__dirname + "/HackerBay"));
 
 
 
@@ -64,7 +55,7 @@ app.get('/robots.txt', function (req, res) {
     res.send("User-agent: *\nDisallow: ");
 });
 app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'seller/index.html'));
+    res.sendFile(path.join(__dirname, 'HackerBay/index.html'));
 });
 
 //Starting Server
